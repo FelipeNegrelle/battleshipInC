@@ -3,7 +3,8 @@
         "stdlib.h": "c",
         "battleship.h": "c",
         "ctype.h": "c",
-        "time.h": "c"
+        "time.h": "c",
+        "conio.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
