@@ -1,0 +1,32 @@
+Batalha-naval em C:
+
+-telas:
+	-tela de apresentação
+	-menu de seleção de dificuldade
+	-tela de login
+	-tela de cadastro
+	-pagina de jogo propriamente dita
+
+-funções:
+	-gerarTabuleiro()
+	-posicionarBarcos()	
+	-cadastrarUsuario()
+	-logarUsuario()
+-classes? :
+	-couraçado(4 espaços)
+	-fragata(3 espaços)
+	-submarino(2 espaços)
+	-rebocador(1 espaço)
+
+-tamanhos de tabuleiro:
+	-10x10
+	-20x20	
+	-30x30
+
+-por que(sugestoes):
+	-fomentar a comunidade open-source e o desenvolvimento de aplicações de código-aberto com espírito de comunidade
+	-criar um jogo simples e leve para ser jogado em qualquer maquina que rode C
+
+-jam board:
+	tem q fazer uma função pra gerar um tabuleiro, provavelmente com um for e tambem o tabuleiro ser organizado numa array, e a cada atualizacao do tabuleiro atualizar o conteudo dessa array
+	definir os tipos das celulas existentes no tabuleiro
