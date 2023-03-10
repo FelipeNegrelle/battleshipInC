@@ -42,6 +42,6 @@ int main() {
 	// tabuada();
 	// texto();
 	// media();
-	calc();
+	//calc();
 	return 0;
 }
