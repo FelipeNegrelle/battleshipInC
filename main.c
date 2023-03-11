@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include "battleship.c"
+#include <curses.h>
+
 
 int main() {
-    TELA_INICIAL();
+    // telaInicial();
+    teste();
     return 0;
 }

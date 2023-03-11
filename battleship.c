@@ -1,15 +1,22 @@
 #include <stdio.h>
+#include <curses.h>
 
-char TABULEIRO;
-
-void SOBRE() {
-	printf("Projeto desenvolvido por Felipe Negrelle e Bianca Javorski?\n");
+void sobre() {
+	printf("Projeto desenvolvido por Felipe Negrelle\n");
 	printf("Na matéria de projeto integrador I\n");
-	printf("Felipe github: https://github.com/felipenegrelle\n");
+	printf("Github: https://github.com/felipenegrelle\n");
 }
 
-void TELA_INICIAL() {
+void teste() {
+	initscr();
+	printw("teste");
+	refresh();
+	endwin();
+}
+
+void telaInicial() {
 	int opcao;
+	initscr();
 	printf("Bem-vindo ao jogo Batalha-Naval:\n");
 	printf("1. Novo Jogo\n");
 	printf("2. Continuar Jogo\n");
@@ -42,7 +49,7 @@ void TELA_INICIAL() {
 			break;
 		
 		case 6:
-			SOBRE();
+			sobre();
 			break;
 		
 		default:
