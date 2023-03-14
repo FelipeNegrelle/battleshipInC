@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <curses.h>
+#include <conio.h>
+#include <conio.c>
 
 void sobre() {
 	printf("Projeto desenvolvido por Felipe Negrelle\n");
@@ -7,16 +8,8 @@ void sobre() {
 	printf("Github: https://github.com/felipenegrelle\n");
 }
 
-void teste() {
-	initscr();
-	printw("teste");
-	refresh();
-	endwin();
-}
-
 void telaInicial() {
 	int opcao;
-	initscr();
 	printf("Bem-vindo ao jogo Batalha-Naval:\n");
 	printf("1. Novo Jogo\n");
 	printf("2. Continuar Jogo\n");
@@ -26,7 +19,7 @@ void telaInicial() {
 	printf("6. Sobre\n");
 
 	scanf("%d", &opcao);
-
+	
 	switch (opcao){
 		case 1:
 			printf("opcao 1\n");
