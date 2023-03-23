@@ -1,5 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+#include <conio.c>
+
 
  void tabuada() {
 	int n;
@@ -76,6 +80,82 @@ void gasolina() {
 
 }
 
+void natacao(){
+	int idade;
+	char categoria[20];
+	printf("Qual a idade do nadador?");
+	scanf("%d", &idade);
+	if(idade <= 5 || idade <= 7) {
+		strcpy(categoria, "Infantil A");
+	}
+	else if(idade <= 8 || idade <= 10) {
+		strcpy(categoria, "Infantil B");
+	}
+	else if(idade <= 11 || idade <= 13) {
+		strcpy(categoria, "Juvenil A");
+	}
+	else if(idade <= 14 || idade <= 17) {
+		strcpy(categoria, "Juvenil B");
+	}
+	else if(idade > 17) {
+		strcpy(categoria, "Senior");
+	}
+	printf("A categoria designada do nadador e: %s\n", categoria);
+}
+
+void bissexto() {
+	int ano;
+	printf("Digite o ano, e veja se ele é bissexto:");
+	scanf("%d", &ano);
+
+	if((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0)) {
+		printf("O ano é bissexto!\n");
+	}
+	else {
+		printf("O ano não é bissexto\n");
+	}
+}
+
+void operacoes() {
+	float num1; 
+	float num2;
+	char operacao;
+
+	printf("Insira dois numeros para a operação:");
+	scanf("%f %f", &num1, &num2);
+
+	printf("Digite a operação que deseja realizar:\n");
+	printf("Soma: s\n");
+	printf("Subtração: x\n");
+	printf("Multiplicação: m\n");
+	printf("Divisão: d\n");
+
+	scanf("%c", &operacao);	
+	printf("%c", operacao);
+
+	switch(operacao) {
+		case '+':
+			printf("%f + %f = %f", num1, num2, (num1 + num2));
+			break;
+
+		case '-':
+			printf("%f - %f = %f", num1, num2, (num1 - num2));
+			break;
+
+		case '*':
+			printf("%f * %f = %f", num1, num2, (num1 * num2));
+			break;
+
+		case '/':
+			printf("%f / %f = %f", num1, num2, (num1 / num2));
+			break;
+
+		default:
+			printf("vc n inseriu  a operacao :(\n");
+			break;
+	}
+}
+
 int main() {
 	// tabuada();
 	// texto();
@@ -84,5 +164,8 @@ int main() {
 	// quadrado();
 	// conversor();
 	// gasolina();
+	// natacao();
+	// bissexto();
+	// operacoes();
 	return 0;
 }
