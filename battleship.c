@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <conio.h>
 #include <conio.c>
+#include <conio.h>
 
 #define FACIL 10
 #define	MEDIO 15
@@ -72,17 +72,17 @@ void novoJogo() {
 }
 
 void sobre() {
-	c_textcolor(14);
+	textcolor(14);
 	printf("Projeto desenvolvido por Felipe Negrelle\n");
 	printf("Na matéria de projeto integrador I\n");
 	printf("Github: https://github.com/felipenegrelle\n");
 	printf("Aperte qualquer tecla para voltar ao menu inicial\n");
-	c_getch();
+	getch();
 	telaInicial();
 }
 
 void regras() {
-	c_textcolor(14);
+	textcolor(14);
 	printf("O jogo consiste em acertar todos os navios do oponente.\n");
 	printf("O tabuleiro é composto por 10x10 posições.\n");
 	printf("Os navios são compostos por 3 partes.\n");
@@ -100,17 +100,16 @@ void regras() {
 	printf("3. Difícil: tabuleiro 20x20\n");
 	printf("Bom jogo\n");
 	printf("Aperte qualquer tecla para voltar ao menu inicial\n");
-	system("pause");
 	// system("clear");
-	// c_getch();
+	// getch();
 	telaInicial();
 }
 
 void telaInicial() {
 	int opcao;
-	c_textcolor(14);
+	textcolor(14);
 	printf("Bem-vindo ao jogo Batalha-Naval:\n");
-	c_textcolor(9);
+	textcolor(9);
 	printf("1. Novo Jogo\n");
 	printf("2. Regras\n");
 	printf("3. Sobre\n");
