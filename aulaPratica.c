@@ -156,6 +156,44 @@ void operacoes() {
 	}
 }
 
+void quadrados() {
+	for (int i = 15; i <= 35; i++) {
+		printf("%d^2 = %d\n", i, i*i);
+	}
+}
+
+void fatorial() {
+	int fatorar;
+	int resultado;
+	int contador;
+	printf("Insira um numero para calcular seu fatorial:");
+	scanf("%d", &fatorar);
+	resultado = fatorar;
+	for( contador = 1; contador < fatorar; contador++) {
+		resultado = resultado * contador;
+	}
+	printf("%d! = %d", fatorar, resultado);
+
+}
+
+void investimento() {
+/*escreva um programa que calcule juros compostos */
+}
+
+void pares() {
+	int pares;
+	int acumulador;	
+	printf("Digite o valor maximo para achar n numeros pares:");
+	scanf("%d", &pares);
+
+	printf("os primeiros %d pares sao:\t", pares);
+	for(int i = 0; i <= pares; i++){
+		if( i % 2  == 0) {
+			printf("%d ", i);
+		}
+	}
+}
+
 int main() {
 	// tabuada();
 	// texto();
@@ -167,5 +205,9 @@ int main() {
 	// natacao();
 	// bissexto();
 	// operacoes();
+	// quadrados();
+	// fatorial();
+	investimento();
+	// pares();
 	return 0;
 }
