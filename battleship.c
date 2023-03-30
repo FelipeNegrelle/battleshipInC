@@ -7,6 +7,11 @@
 #define FACIL 10
 #define	MEDIO 15
 #define DIFICIL 20
+#define AGUA '~'
+#define DESTRUIDO '*'
+
+
+
 /*
 PRETO = 0,
 AZUL = 1,
@@ -24,6 +29,11 @@ VERMELHO_CLARO = 12,
 ROXO_CLARO = 13,
 AMARELO = 14
 */
+typedef struct Navios{
+	int tamanho;
+	char tipo;
+} Navio;
+
 void sobre();
 void regras();
 void telaInicial();
@@ -36,39 +46,43 @@ int selecionaDificuldade() {
 
 	int dificuldade;
 	scanf("%d", &dificuldade);
-	return dificuldade;
+	int tamanhoTabuleiro;
+
+	switch(dificuldade) {
+		case 1: 
+			tamanhoTabuleiro = FACIL;			
+			return tamanhoTabuleiro;
+		case 2: 
+			tamanhoTabuleiro = MEDIO;
+			return tamanhoTabuleiro;
+		case 3: 
+			tamanhoTabuleiro = DIFICIL;
+			return tamanhoTabuleiro;
+		default:
+			printf("Digite uma opcao valida\n");
+			break;
+	}
 }
 
 /**/
 
-void criaTabuleiro(int dificuldade) {
+void criaTabuleiro( int tamanho ) {
     int linha, coluna;
-	int tabuleiro[dificuldade][dificuldade];
+	int tabuleiro[tamanho][tamanho];
     for(linha = 0; linha < 5 ; linha++)
         for(coluna=0; coluna < 5; coluna++)
-            tabuleiro[linha][coluna]=-1;
+            tabuleiro[linha][coluna] = AGUA;
 }
 
 void mostraTabuleiro() {
 }
 
-void novoJogo() {
-	int tamanhoTabuleiro;
-	int dificuldade = selecionaDificuldade();
+int novoJogo() {
+	int tamanhoTabuleiro = selecionaDificuldade();
+	printf("%d", tamanhoTabuleiro);
+	criaTabuleiro(tamanhoTabuleiro);
+	return 1;
 
-	switch(dificuldade) {
-		case 1: 
-			tamanhoTabuleiro = FACIL;
-			break;
-		case 2: 
-			tamanhoTabuleiro = MEDIO;
-			break;
-		case 3: 
-			tamanhoTabuleiro = DIFICIL;
-			break;
-		default:
-			break;
-	}
 }
 
 void sobre() {
@@ -78,7 +92,6 @@ void sobre() {
 	printf("Github: https://github.com/felipenegrelle\n");
 	printf("Aperte qualquer tecla para voltar ao menu inicial\n");
 	getchar();
-	telaInicial();
 }
 
 void regras() {
@@ -100,6 +113,7 @@ void regras() {
 	printf("3. Difícil: tabuleiro 20x20\n");
 	printf("Bom jogo\n");
 	printf("Aperte qualquer tecla para voltar ao menu inicial\n");
+	getchar();
 }
 
 void telaInicial() {
@@ -110,6 +124,7 @@ void telaInicial() {
 	printf("1. Novo Jogo\n");
 	printf("2. Regras\n");
 	printf("3. Sobre\n");
+	printf("4. Sair\n");
 
 	scanf("%d", &opcao);
 	
@@ -120,17 +135,24 @@ void telaInicial() {
 		
 		case 2:
 			regras();
-			char opcao = getchar();
-			printf("%c", opcao);
-			// system("clear");
-			// telaInicial();
+			getchar();
+			system("clear");
+			telaInicial();
 			break;
 		
 		case 3:
 			sobre();
+			getchar();
+			system("clear");
+			telaInicial();
+			break;
+		case 4:
+			printf("Ate a proxima\n");
 			break;
 		default:
 			printf("Digite uma opçao valida");
+			system("clear");
+			telaInicial();
 			break;
 	}
 }

@@ -13,10 +13,9 @@ Batalha-naval em C:
 	-cadastrarUsuario()
 	-logarUsuario()
 -classes? :
-	-couraçado(4 espaços)
-	-fragata(3 espaços)
-	-submarino(2 espaços)
-	-rebocador(1 espaço)
+	-couraçado(3 espaços)
+	-fragata(2 espaços)
+	-submarino(1 espaço)
 
 -tamanhos de tabuleiro:
 	-10x10
