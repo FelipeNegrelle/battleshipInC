@@ -37,6 +37,8 @@ typedef struct Navios{
 void sobre();
 void regras();
 void telaInicial();
+void escreveArquivoTxt();
+void leArquivoTxt();
 
 int selecionaDificuldade() {
 	printf("Selecione a dificuldade do jogo:\n");
@@ -69,23 +71,31 @@ int selecionaDificuldade() {
 void criaTabuleiro( int tamanho ) {
     int linha, coluna;
 	int tabuleiro[tamanho][tamanho];
-    for(linha = 0; linha < 5 ; linha++)
-        for(coluna=0; coluna < 5; coluna++)
+    for(linha = 0; linha < tamanho; linha++)
+        for(coluna=0; coluna < tamanho; coluna++)
             tabuleiro[linha][coluna] = AGUA;
 }
 
-void mostraTabuleiro() {
+void mostraTabuleiro( int tamanho ) {
+	int linha, coluna;
+	int tabuleiro[tamanho][tamanho];
+	for(linha = 0; linha < tamanho; linha++) {
+		for(coluna=0; coluna < tamanho; coluna++) {
+			printf("%c", tabuleiro[linha][coluna]);
+		}
+		printf("\n");
+	}
 }
 
 int novoJogo() {
 	int tamanhoTabuleiro = selecionaDificuldade();
 	printf("%d", tamanhoTabuleiro);
 	criaTabuleiro(tamanhoTabuleiro);
-	return 1;
-
+	mostraTabuleiro(tamanhoTabuleiro);
 }
 
 void sobre() {
+	system("clear");
 	c_textcolor(14);
 	printf("Projeto desenvolvido por Felipe Negrelle\n");
 	printf("Na matéria de projeto integrador I\n");
@@ -95,6 +105,7 @@ void sobre() {
 }
 
 void regras() {
+	system("clear");
 	c_textcolor(14);
 	printf("O jogo consiste em acertar todos os navios do oponente.\n");
 	printf("O tabuleiro é composto por 10x10 posições.\n");
@@ -114,6 +125,41 @@ void regras() {
 	printf("Bom jogo\n");
 	printf("Aperte qualquer tecla para voltar ao menu inicial\n");
 	getchar();
+}
+
+void escreveArquivoTxt(char linha[100]) {
+	FILE *arquivo;
+	
+	arquivo = fopen("batalha-naval.txt", "w");
+	
+	if(arquivo == NULL) {
+		printf("Erro ao abrir o arquivo\n");
+		exit(1);
+	}
+	
+	fputs(linha, arquivo);
+	fclose(arquivo);
+}
+
+void leArquivoTxt() {
+	FILE *arquivo;
+	char linha[100];
+	char *result;
+	
+	arquivo = fopen("batalha-naval.txt", "r");
+	
+	if(arquivo == NULL) {
+		printf("Erro ao abrir o arquivo\n");
+		exit(1);
+	}
+	
+	while(!feof(arquivo)) {
+		result = fgets(linha, 100, arquivo);
+		if(result) {
+			printf("%s", linha);
+		}
+	}
+	fclose(arquivo);
 }
 
 void telaInicial() {

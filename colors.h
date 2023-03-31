@@ -1,4 +1,0 @@
-COLORS {
-    AMARELO = "\e",
-    
-}
