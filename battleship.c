@@ -5,8 +5,8 @@
 #include <conio.h>
 
 #define FACIL 10
-#define	MEDIO 15
-#define DIFICIL 20
+#define	MEDIO 12
+#define DIFICIL 15
 #define AGUA '~'
 #define DESTRUIDO '*'
 
@@ -71,17 +71,31 @@ int selecionaDificuldade() {
 void criaTabuleiro( int tamanho ) {
     int linha, coluna;
 	int tabuleiro[tamanho][tamanho];
-    for(linha = 0; linha < tamanho; linha++)
-        for(coluna=0; coluna < tamanho; coluna++)
+    
+    for(linha = 0; linha < tamanho; linha++) {
+        for(coluna=0; coluna < tamanho; coluna++) {
             tabuleiro[linha][coluna] = AGUA;
+        }
+    }
 }
 
 void mostraTabuleiro( int tamanho ) {
 	int linha, coluna;
 	int tabuleiro[tamanho][tamanho];
+	int caracter;
+	system("clear");
+	c_textcolor(15);
+	printf("\n");
+	printf("\t  ");
+	for(caracter = 65; caracter < (65 + tamanho); caracter++) {
+		printf("%c ", caracter);
+	}
+
+	printf("\n");
 	for(linha = 0; linha < tamanho; linha++) {
-		for(coluna=0; coluna < tamanho; coluna++) {
-			printf("%c", tabuleiro[linha][coluna]);
+		printf("\t%2d", linha + 1);
+		for(coluna = 0; coluna < tamanho; coluna++) {
+			printf("%c ", tabuleiro[linha][coluna]);
 		}
 		printf("\n");
 	}
@@ -89,7 +103,6 @@ void mostraTabuleiro( int tamanho ) {
 
 int novoJogo() {
 	int tamanhoTabuleiro = selecionaDificuldade();
-	printf("%d", tamanhoTabuleiro);
 	criaTabuleiro(tamanhoTabuleiro);
 	mostraTabuleiro(tamanhoTabuleiro);
 }
