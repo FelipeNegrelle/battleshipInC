@@ -5,7 +5,7 @@
 #include <conio.c>
 
 
- void tabuada() {
+void tabuada() {
 	int n;
 	printf("Forneça um número inteiro para a tabuada: ");
 	scanf("%d", &n);
@@ -13,7 +13,7 @@
 		printf("\n%2d * %d = %3d", i, n, (i * n));
 	}
 }
- void texto() {
+  void texto() {
 	char c1, c2, c3, c4, c5 ,c6 ,c7, c8, c9;
 
 	c1 = 'U';
@@ -178,11 +178,11 @@ void fatorial() {
 
 void investimento() {
 /*escreva um programa que calcule juros compostos */
+// n fiz pq fiquei com preguiça
 }
 
 void pares() {
 	int pares;
-	int acumulador;	
 	printf("Digite o valor maximo para achar n numeros pares:");
 	scanf("%d", &pares);
 
@@ -192,6 +192,53 @@ void pares() {
 			printf("%d ", i);
 		}
 	}
+}
+
+void vetorQuadrado() {
+	int vetorA[15];
+	int vetorB[15];
+	printf("os valores do vetor A sao: \n");
+	for (int i = 0; i<= 15; i++) {
+		vetorA[i] = i;
+		printf("%d ", vetorA[i]);
+	}
+	printf("\n");
+	printf("os valores do vetor B sao: \n");
+	for(int j = 0; j <= 15; j++) {
+		vetorB[j] = vetorA[j] * vetorA[j];
+		printf("%d ", vetorB[j]);
+	}
+}
+
+void vetorSoma() {
+	int vetorA[10];
+	int vetorB[10];
+	int vetorC[10];
+	printf("os valores do vetor A sao: \n");
+	for (int i = 0; i<= 10; i++) {
+		vetorA[i] = i;
+		printf("%d ", vetorA[i]);
+	}
+	printf("\n");
+	printf("os valores do vetor B sao: \n");
+	for (int j = 0; j<= 10; j++) {
+		vetorB[j] = j;
+		printf("%d ", vetorB[j]);
+	}
+	printf("\n");
+	printf("os valores do vetor C sao: \n");
+	for(int k = 0; k <= 10; k++) {
+		vetorC[k] = vetorA[k] + vetorB[k];
+		printf("%d ", vetorC[k]);
+	}
+	printf("\n");
+}
+
+void notas() {
+	float nota1[10], nota2[10];
+	float resultado[10];
+	
+
 }
 
 int main() {
@@ -207,7 +254,9 @@ int main() {
 	// operacoes();
 	// quadrados();
 	// fatorial();
-	investimento();
+	// investimento();
 	// pares();
+	// vetorQuadrado();
+	// vetorSoma();
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include <conio.c>
 #include <conio.h>
 
@@ -84,7 +85,7 @@ void mostraTabuleiro( int tamanho ) {
 	int tabuleiro[tamanho][tamanho];
 	int caracter;
 	system("clear");
-	c_textcolor(15);
+	c_textcolor(14);
 	printf("\n");
 	printf("\t  ");
 	for(caracter = 65; caracter < (65 + tamanho); caracter++) {
@@ -93,8 +94,10 @@ void mostraTabuleiro( int tamanho ) {
 
 	printf("\n");
 	for(linha = 0; linha < tamanho; linha++) {
+		c_textcolor(14);
 		printf("\t%2d", linha + 1);
 		for(coluna = 0; coluna < tamanho; coluna++) {
+			c_textcolor(3);
 			printf("%c ", tabuleiro[linha][coluna]);
 		}
 		printf("\n");
