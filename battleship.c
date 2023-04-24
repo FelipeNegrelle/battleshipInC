@@ -11,8 +11,6 @@
 #define AGUA '~'
 #define DESTRUIDO '*'
 
-
-
 /*
 PRETO = 0,
 AZUL = 1,
@@ -30,6 +28,7 @@ VERMELHO_CLARO = 12,
 ROXO_CLARO = 13,
 AMARELO = 14
 */
+
 typedef struct Navios{
 	int tamanho;
 	char tipo;
@@ -65,9 +64,8 @@ int selecionaDificuldade() {
 			printf("Digite uma opcao valida\n");
 			break;
 	}
+	return 1;
 }
-
-/**/
 
 void criaTabuleiro( int tamanho ) {
     int linha, coluna;
@@ -104,10 +102,19 @@ void mostraTabuleiro( int tamanho ) {
 	}
 }
 
-int novoJogo() {
+char carregaUsuario() {
+	char usuario[50];
+	printf("Insira o nome do jogador: ");
+	scanf("%s", usuario);
+	return usuario[50];
+}
+
+void novoJogo() {
 	int tamanhoTabuleiro = selecionaDificuldade();
+	char nomeDeUsuario[50];
 	criaTabuleiro(tamanhoTabuleiro);
 	mostraTabuleiro(tamanhoTabuleiro);
+	printf("\n%s", nomeDeUsuario);
 }
 
 void sobre() {

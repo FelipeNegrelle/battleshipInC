@@ -13,7 +13,8 @@ void tabuada() {
 		printf("\n%2d * %d = %3d", i, n, (i * n));
 	}
 }
-  void texto() {
+
+void texto() {
 	char c1, c2, c3, c4, c5 ,c6 ,c7, c8, c9;
 
 	c1 = 'U';

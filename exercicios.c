@@ -2,6 +2,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+//para compilar com o gcc use o comando: "gcc exercicios.c -lm -o exercicios"
+
 /*Fazer um programa em C que pergunta um valor em metros e imprime
 o correspondente em decímetros, centímetros e milímetros.*/
 
