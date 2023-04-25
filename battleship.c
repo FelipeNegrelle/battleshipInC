@@ -106,15 +106,17 @@ char carregaUsuario() {
 	char usuario[50];
 	printf("Insira o nome do jogador: ");
 	scanf("%s", usuario);
-	return usuario[50];
+	return usuario;
 }
 
-void novoJogo() {
+void novoJogo(char nomeDeUsuario[]) {
+	// carregaUsuario();
+	char* nomeDeUsuario = carregaUsuario();
+	// nomeDeUsuario = carregaUsuario();
 	int tamanhoTabuleiro = selecionaDificuldade();
-	char nomeDeUsuario[50];
 	criaTabuleiro(tamanhoTabuleiro);
 	mostraTabuleiro(tamanhoTabuleiro);
-	printf("\n%s", nomeDeUsuario);
+	printf("%s\n", nomeDeUsuario);
 }
 
 void sobre() {
@@ -199,7 +201,7 @@ void telaInicial() {
 	
 	switch(opcao) {
 		case 1:
-			novoJogo(); 
+			novoJogo(carregaUsuario()); 
 			break;
 		
 		case 2:
