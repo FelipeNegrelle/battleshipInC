@@ -29,95 +29,12 @@ ROXO_CLARO = 13,
 AMARELO = 14
 */
 
-typedef struct Navios{
-	int tamanho;
-	char tipo;
-} Navio;
-
 void sobre();
 void regras();
+void escreveArquivoTxt(char linha[100]);
 void telaInicial();
-void escreveArquivoTxt();
 void leArquivoTxt();
-
-int selecionaDificuldade() {
-	printf("Selecione a dificuldade do jogo:\n");
-	printf("1. Fácil: tabuleiro 10x10\n");
-	printf("2. Médio: tabuleiro 15x15\n");
-	printf("3. Difícil: tabuleiro 20x20\n");
-
-	int dificuldade;
-	scanf("%d", &dificuldade);
-	int tamanhoTabuleiro;
-
-	switch(dificuldade) {
-		case 1: 
-			tamanhoTabuleiro = FACIL;			
-			return tamanhoTabuleiro;
-		case 2: 
-			tamanhoTabuleiro = MEDIO;
-			return tamanhoTabuleiro;
-		case 3: 
-			tamanhoTabuleiro = DIFICIL;
-			return tamanhoTabuleiro;
-		default:
-			printf("Digite uma opcao valida\n");
-			break;
-	}
-	return 1;
-}
-
-void criaTabuleiro( int tamanho ) {
-    int linha, coluna;
-	int tabuleiro[tamanho][tamanho];
-    
-    for(linha = 0; linha < tamanho; linha++) {
-        for(coluna=0; coluna < tamanho; coluna++) {
-            tabuleiro[linha][coluna] = AGUA;
-        }
-    }
-}
-
-void mostraTabuleiro( int tamanho ) {
-	int linha, coluna;
-	int tabuleiro[tamanho][tamanho];
-	int caracter;
-	system("clear");
-	c_textcolor(14);
-	printf("\n");
-	printf("\t  ");
-	for(caracter = 65; caracter < (65 + tamanho); caracter++) {
-		printf("%c ", caracter);
-	}
-
-	printf("\n");
-	for(linha = 0; linha < tamanho; linha++) {
-		c_textcolor(14);
-		printf("\t%2d", linha + 1);
-		for(coluna = 0; coluna < tamanho; coluna++) {
-			c_textcolor(3);
-			printf("%c ", tabuleiro[linha][coluna]);
-		}
-		printf("\n");
-	}
-}
-
-char carregaUsuario() {
-	char usuario[50];
-	printf("Insira o nome do jogador: ");
-	scanf("%s", usuario);
-	return usuario;
-}
-
-void novoJogo(char nomeDeUsuario[]) {
-	// carregaUsuario();
-	char* nomeDeUsuario = carregaUsuario();
-	// nomeDeUsuario = carregaUsuario();
-	int tamanhoTabuleiro = selecionaDificuldade();
-	criaTabuleiro(tamanhoTabuleiro);
-	mostraTabuleiro(tamanhoTabuleiro);
-	printf("%s\n", nomeDeUsuario);
-}
+void realizaJogada();
 
 void sobre() {
 	system("clear");
@@ -187,6 +104,160 @@ void leArquivoTxt() {
 	fclose(arquivo);
 }
 
+int selecionaDificuldade() {
+	printf("Selecione a dificuldade do jogo:\n");
+	printf("1. Fácil: tabuleiro 10x10\n");
+	printf("2. Médio: tabuleiro 15x15\n");
+	printf("3. Difícil: tabuleiro 20x20\n");
+
+	int dificuldade;
+	scanf("%d", &dificuldade);
+	int tamanhoTabuleiro;
+
+	switch(dificuldade) {
+		case 1: 
+			tamanhoTabuleiro = FACIL;			
+			return tamanhoTabuleiro;
+		case 2: 
+			tamanhoTabuleiro = MEDIO;
+			return tamanhoTabuleiro;
+		case 3: 
+			tamanhoTabuleiro = DIFICIL;
+			return tamanhoTabuleiro;
+		default:
+			printf("Digite uma opcao valida\n");
+			break;
+	}
+	return 1;
+}
+
+void criaTabuleiro( int tamanho, char caracter ) {
+    int linha, coluna;
+	int tabuleiro[tamanho][tamanho];
+    for(linha = 0; linha < tamanho; linha++) {
+        for(coluna=0; coluna < tamanho; coluna++) {
+            tabuleiro[linha][coluna] = caracter;
+        }
+    }
+}
+
+void mostraTabuleiro( int tamanho ) {
+	int linha, coluna;
+	int tabuleiro[tamanho][tamanho];
+	system("clear");
+	c_textcolor(14);
+	printf("\n");
+	printf("\t  ");
+	for(int caracter = 65; caracter < (65 + tamanho); caracter++) {
+		printf("%c ", caracter);
+	}
+
+	printf("\n");
+	for(linha = 0; linha < tamanho; linha++) {
+		c_textcolor(14);
+		printf("\t%2d", linha + 1);
+		for(coluna = 0; coluna < tamanho; coluna++) {
+			c_textcolor(3);
+			printf("%c ", tabuleiro[linha][coluna]);
+		}
+		printf("\n");
+	}
+}
+
+void posicionaBarcos( int tamanho ) {
+
+	typedef struct Navios{
+		int tamanho;
+		char tipo;
+	} Navio;
+
+	Navio portaAvioes;
+	portaAvioes.tamanho = 3;
+	portaAvioes.tipo = 'P';
+
+	Navio encouracado;
+	encouracado.tamanho = 2;
+	encouracado.tipo = 'E';
+
+	Navio submarino;
+	submarino.tamanho = 1;
+	submarino.tipo = 'S';
+
+	Navio barcos[3];
+	barcos[0] = portaAvioes;
+	barcos[1] = encouracado;
+	barcos[2] = submarino;
+ 
+	int linha, coluna;
+	int tabuleiro[tamanho][tamanho];
+	int linhaBarco, colunaBarco;
+	int direcao;
+	int barco;
+	int barcosPosicionados = 0;
+	srand(time(NULL));
+
+	do {
+		int randomLinha = rand() % tamanho;
+		int randomColuna = rand() % tamanho;
+		int randomDirecao = rand() % 4;
+		linhaBarco = randomLinha;
+		colunaBarco = randomColuna;
+		direcao = randomDirecao;
+		barco = barcos[barcosPosicionados];
+		if(direcao == 0) {
+			if(linhaBarco + barco.tamanho < tamanho) {
+				for(int i = 0; i < barco.tamanho; i++) {
+					tabuleiro[linhaBarco + i][colunaBarco] = barco.tipo;
+				}
+				barcosPosicionados++;
+			}
+		} else if(direcao == 1) {
+			if(linhaBarco - barco.tamanho >= 0) {
+				for(int i = 0; i < barco.tamanho; i++) {
+					tabuleiro[linhaBarco - i][colunaBarco] = barco.tipo;
+				}
+				barcosPosicionados++;
+			}
+		} else if(direcao == 2) {
+			if(colunaBarco + barco.tamanho < tamanho) {
+				for(int i = 0; i < barco.tamanho; i++) {
+					tabuleiro[linhaBarco][colunaBarco + i] = barco.tipo;
+				}
+				barcosPosicionados++;
+			}
+		} else if(direcao == 3) {
+			if(colunaBarco - barco.tamanho >= 0) {
+				for(int i = 0; i < barco.tamanho; i++) {
+					tabuleiro[linhaBarco][colunaBarco - i] = barco.tipo;
+				}
+				barcosPosicionados++;
+			}
+		}
+		
+	}
+
+	while(barcosPosicionados < 3);
+}
+// void realizaJogada(int tamanho) {
+// 	int linha, coluna;
+
+
+// }
+
+void novoJogo() {
+	int tamanhoTabuleiro = selecionaDificuldade();
+	char nomeDeUsuario[50];
+	printf("Digite seu nome de usuario: ");
+	scanf("%s", nomeDeUsuario);
+	criaTabuleiro(tamanhoTabuleiro, AGUA);
+	posicionaBarcos(tamanhoTabuleiro);
+	mostraTabuleiro(tamanhoTabuleiro);
+	printf("%s\n", nomeDeUsuario);
+
+	// realizaJogada();
+}
+
+
 void telaInicial() {
 	int opcao;
 	c_textcolor(14);
@@ -201,7 +272,7 @@ void telaInicial() {
 	
 	switch(opcao) {
 		case 1:
-			novoJogo(carregaUsuario()); 
+			novoJogo(); 
 			break;
 		
 		case 2:
