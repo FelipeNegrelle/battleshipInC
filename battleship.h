@@ -43,3 +43,15 @@ void regras() {
 	printf("Aperte qualquer tecla para voltar ao menu inicial\n");
 	getchar();
 }
+
+
+typedef struct Navios{
+	int tamanho;
+	char tipo;
+} Navio;
+
+Navio portaAvioes = {.tamanho = 3, .tipo = 'P'};
+
+Navio encouracado = {.tamanho = 2, .tipo = 'E'};
+
+Navio submarino = {.tamanho = 1, .tipo = 'S'};

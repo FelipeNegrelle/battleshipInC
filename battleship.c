@@ -103,35 +103,15 @@ void mostraTabuleiro( int tamanho ) {
 	}
 }
 
-void posicionaBarcos( int tamanho ) {
-
-	typedef struct Navios{
-		int tamanho;
-		char tipo;
-	} Navio;
-
-	struct Navio portaAvioes;
-	portaAvioes.tamanho = 3;
-	portaAvioes.tipo = 'P';
-
-	struct Navio encouracado;
-	encouracado.tamanho = 2;
-	encouracado.tipo = 'E';
-
-	struct Navio submarino;
-	submarino.tamanho = 1;
-	submarino.tipo = 'S';
-
-	struct Navio barcos[3];
+void posicionaBarcos( int tamanho ) {	
+	Navio barcos[3];
 	barcos[0] = portaAvioes;
 	barcos[1] = encouracado;
 	barcos[2] = submarino;
- 
 	int linha, coluna;
 	int tabuleiro[tamanho][tamanho];
 	int linhaBarco, colunaBarco;
 	int direcao;
-	struct Navio barco;
 	int barcosPosicionados = 0;
 	srand(time(NULL));
 
@@ -142,7 +122,7 @@ void posicionaBarcos( int tamanho ) {
 		linhaBarco = randomLinha;
 		colunaBarco = randomColuna;
 		direcao = randomDirecao;
-		barco = barcos[barcosPosicionados];
+		Navio barco = barcos[barcosPosicionados];
 		if(direcao == 0) {
 			if(linhaBarco + barco.tamanho < tamanho) {
 				for(int i = 0; i < barco.tamanho; i++) {
