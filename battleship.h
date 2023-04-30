@@ -11,6 +11,41 @@ void telaInicial();
 void leArquivoTxt();
 void realizaJogada();
 
+void escreveArquivoTxt(char linha[100]) {
+	FILE *arquivo;
+	
+	arquivo = fopen("batalha-naval.txt", "w");
+	
+	if(arquivo == NULL) {
+		printf("Erro ao abrir o arquivo\n");
+		exit(1);
+	}
+	
+	fputs(linha, arquivo);
+	fclose(arquivo);
+}
+
+void leArquivoTxt() {
+	FILE *arquivo;
+	char linha[100];
+	char *result;
+	
+	arquivo = fopen("batalha-naval.txt", "r");
+	
+	if(arquivo == NULL) {
+		printf("Erro ao abrir o arquivo\n");
+		exit(1);
+	}
+	
+	while(!feof(arquivo)) {
+		result = fgets(linha, 100, arquivo);
+		if(result) {
+			printf("%s", linha);
+		}
+	}
+	fclose(arquivo);
+}
+
 void sobre() {
 	system("clear");
 	c_textcolor(14);
@@ -51,7 +86,5 @@ typedef struct Navios{
 } Navio;
 
 Navio portaAvioes = {.tamanho = 3, .tipo = 'P'};
-
 Navio encouracado = {.tamanho = 2, .tipo = 'E'};
-
 Navio submarino = {.tamanho = 1, .tipo = 'S'};

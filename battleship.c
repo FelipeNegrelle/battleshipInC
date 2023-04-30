@@ -8,41 +8,6 @@
 
 //PRETO = 0, AZUL = 1, VERDE = 2, CIANO = 3, VERMELHO = 4, ROXO = 5, MARROM = 6, CINZA_CLARO = 7, CINZA_ESCURO = 8, AZUL_CLARO = 9, VERDE_CLARO = 10, CIANO_CLARO = 11, VERMELHO_CLARO = 12, ROXO_CLARO = 13, AMARELO = 14
 
-void escreveArquivoTxt(char linha[100]) {
-	FILE *arquivo;
-	
-	arquivo = fopen("batalha-naval.txt", "w");
-	
-	if(arquivo == NULL) {
-		printf("Erro ao abrir o arquivo\n");
-		exit(1);
-	}
-	
-	fputs(linha, arquivo);
-	fclose(arquivo);
-}
-
-void leArquivoTxt() {
-	FILE *arquivo;
-	char linha[100];
-	char *result;
-	
-	arquivo = fopen("batalha-naval.txt", "r");
-	
-	if(arquivo == NULL) {
-		printf("Erro ao abrir o arquivo\n");
-		exit(1);
-	}
-	
-	while(!feof(arquivo)) {
-		result = fgets(linha, 100, arquivo);
-		if(result) {
-			printf("%s", linha);
-		}
-	}
-	fclose(arquivo);
-}
-
 int selecionaDificuldade() {
 	printf("Selecione a dificuldade do jogo:\n");
 	printf("1. Fácil: tabuleiro 10x10\n");
@@ -51,15 +16,16 @@ int selecionaDificuldade() {
 
 	int dificuldade;
 	scanf("%d", &dificuldade);
-	int tamanhoTabuleiro;
+	int tamanhoTabuleiro, quantidadeBarcos;
 
 	switch(dificuldade) {
 		case 1: 
-			tamanhoTabuleiro = FACIL;			
+			tamanhoTabuleiro = FACIL;
 			return tamanhoTabuleiro;
 		case 2: 
 			tamanhoTabuleiro = MEDIO;
 			return tamanhoTabuleiro;
+
 		case 3: 
 			tamanhoTabuleiro = DIFICIL;
 			return tamanhoTabuleiro;
@@ -103,13 +69,13 @@ void mostraTabuleiro( int tamanho ) {
 	}
 }
 
-void posicionaBarcos( int tamanho ) {	
+void posicionaBarcos( int tamanho, int quantidadeBarcos) {	
 	Navio barcos[3];
 	barcos[0] = portaAvioes;
 	barcos[1] = encouracado;
 	barcos[2] = submarino;
 	int linha, coluna;
-	int tabuleiro[tamanho][tamanho];
+	int tabuleiroControle[tamanho][tamanho];
 	int linhaBarco, colunaBarco;
 	int direcao;
 	int barcosPosicionados = 0;
@@ -126,35 +92,38 @@ void posicionaBarcos( int tamanho ) {
 		if(direcao == 0) {
 			if(linhaBarco + barco.tamanho < tamanho) {
 				for(int i = 0; i < barco.tamanho; i++) {
-					tabuleiro[linhaBarco + i][colunaBarco] = barco.tipo;
+					tabuleiroControle[linhaBarco + i][colunaBarco] = barco.tipo;
+					printf("%c e %d", tabuleiroControle[linhaBarco][colunaBarco], quantidadeBarcos);
 				}
 				barcosPosicionados++;
 			}
 		} else if(direcao == 1) {
 			if(linhaBarco - barco.tamanho >= 0) {
 				for(int i = 0; i < barco.tamanho; i++) {
-					tabuleiro[linhaBarco - i][colunaBarco] = barco.tipo;
+					tabuleiroControle[linhaBarco - i][colunaBarco] = barco.tipo;
+					printf("%c", tabuleiroControle[linhaBarco + i][colunaBarco]);
 				}
 				barcosPosicionados++;
 			}
 		} else if(direcao == 2) {
 			if(colunaBarco + barco.tamanho < tamanho) {
 				for(int i = 0; i < barco.tamanho; i++) {
-					tabuleiro[linhaBarco][colunaBarco + i] = barco.tipo;
+					tabuleiroControle[linhaBarco][colunaBarco + i] = barco.tipo;
+					printf("%c", tabuleiroControle[linhaBarco + i][colunaBarco]);
 				}
 				barcosPosicionados++;
 			}
 		} else if(direcao == 3) {
 			if(colunaBarco - barco.tamanho >= 0) {
 				for(int i = 0; i < barco.tamanho; i++) {
-					tabuleiro[linhaBarco][colunaBarco - i] = barco.tipo;
+					tabuleiroControle[linhaBarco][colunaBarco - i] = barco.tipo;
+					printf("%c", tabuleiroControle[linhaBarco + i][colunaBarco]);
 				}
 				barcosPosicionados++;
 			}
 		}
 		
 	}
-
 	while(barcosPosicionados < 3);
 }
 void realizaJogada(int tamanho) {
@@ -165,11 +134,13 @@ void realizaJogada(int tamanho) {
 
 void novoJogo() {
 	int tamanhoTabuleiro = selecionaDificuldade();
+	int quantidadeBarcos = (tamanhoTabuleiro == 10) ? 3 : (tamanhoTabuleiro == 12) ? 4 : 5;
 	char nomeDeUsuario[50];
 	printf("Digite seu nome de usuario: ");
 	scanf("%s", nomeDeUsuario);
+	printf("%d", tamanhoTabuleiro);
 	criaTabuleiro(tamanhoTabuleiro, AGUA);
-	posicionaBarcos(tamanhoTabuleiro);
+	posicionaBarcos(tamanhoTabuleiro, quantidadeBarcos);
 	mostraTabuleiro(tamanhoTabuleiro);
 	printf("%s\n", nomeDeUsuario);
 
