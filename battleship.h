@@ -79,6 +79,40 @@ void regras() {
 	getchar();
 }
 
+void escreveArquivoTxt(char linha[100]) {
+	FILE *arquivo;
+	
+	arquivo = fopen("batalha-naval.txt", "w");
+	
+	if(arquivo == NULL) {
+		printf("Erro ao abrir o arquivo\n");
+		exit(1);
+	}
+	
+	fputs(linha, arquivo);
+	fclose(arquivo);
+}
+
+void leArquivoTxt() {
+	FILE *arquivo;
+	char linha[100];
+	char *result;
+	
+	arquivo = fopen("batalha-naval.txt", "r");
+	
+	if(arquivo == NULL) {
+		printf("Erro ao abrir o arquivo\n");
+		exit(1);
+	}
+	
+	while(!feof(arquivo)) {
+		result = fgets(linha, 100, arquivo);
+		if(result) {
+			printf("%s", linha);
+		}
+	}
+	fclose(arquivo);
+}
 
 typedef struct Navios{
 	int tamanho;

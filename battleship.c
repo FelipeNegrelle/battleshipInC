@@ -49,12 +49,12 @@ void criaTabuleiro( int tamanho, char caracter ) {
 void mostraTabuleiro( int tamanho ) {
 	int linha, coluna;
 	int tabuleiro[tamanho][tamanho];
-	system("clear");
+	// system("clear");
 	c_textcolor(14);
 	printf("\n");
-	printf("\t  ");
-	for(int caracter = 65; caracter < (65 + tamanho); caracter++) {
-		printf("%c ", caracter);
+	printf(" \t ");
+	for(int linha = 0; linha < tamanho; linha++) {
+		printf("%d ", linha + 1);
 	}
 
 	printf("\n");
@@ -75,7 +75,11 @@ void posicionaBarcos( int tamanho, int quantidadeBarcos) {
 	barcos[1] = encouracado;
 	barcos[2] = submarino;
 	int linha, coluna;
+<<<<<<< HEAD
 	int tabuleiroControle[tamanho][tamanho];
+=======
+	int posicaoBarcos[tamanho][tamanho];
+>>>>>>> 01a3d20 (06/05)
 	int linhaBarco, colunaBarco;
 	int direcao;
 	int barcosPosicionados = 0;
@@ -92,44 +96,71 @@ void posicionaBarcos( int tamanho, int quantidadeBarcos) {
 		if(direcao == 0) {
 			if(linhaBarco + barco.tamanho < tamanho) {
 				for(int i = 0; i < barco.tamanho; i++) {
+<<<<<<< HEAD
 					tabuleiroControle[linhaBarco + i][colunaBarco] = barco.tipo;
 					printf("%c e %d", tabuleiroControle[linhaBarco][colunaBarco], quantidadeBarcos);
+=======
+					posicaoBarcos[linhaBarco + i][colunaBarco] = barco.tipo;
+>>>>>>> 01a3d20 (06/05)
 				}
 				barcosPosicionados++;
 			}
 		} else if(direcao == 1) {
 			if(linhaBarco - barco.tamanho >= 0) {
 				for(int i = 0; i < barco.tamanho; i++) {
+<<<<<<< HEAD
 					tabuleiroControle[linhaBarco - i][colunaBarco] = barco.tipo;
 					printf("%c", tabuleiroControle[linhaBarco + i][colunaBarco]);
+=======
+					posicaoBarcos[linhaBarco - i][colunaBarco] = barco.tipo;
+>>>>>>> 01a3d20 (06/05)
 				}
 				barcosPosicionados++;
 			}
 		} else if(direcao == 2) {
 			if(colunaBarco + barco.tamanho < tamanho) {
 				for(int i = 0; i < barco.tamanho; i++) {
+<<<<<<< HEAD
 					tabuleiroControle[linhaBarco][colunaBarco + i] = barco.tipo;
 					printf("%c", tabuleiroControle[linhaBarco + i][colunaBarco]);
+=======
+					posicaoBarcos[linhaBarco][colunaBarco + i] = barco.tipo;
+>>>>>>> 01a3d20 (06/05)
 				}
 				barcosPosicionados++;
 			}
 		} else if(direcao == 3) {
 			if(colunaBarco - barco.tamanho >= 0) {
 				for(int i = 0; i < barco.tamanho; i++) {
+<<<<<<< HEAD
 					tabuleiroControle[linhaBarco][colunaBarco - i] = barco.tipo;
 					printf("%c", tabuleiroControle[linhaBarco + i][colunaBarco]);
+=======
+					posicaoBarcos[linhaBarco][colunaBarco - i] = barco.tipo;
+>>>>>>> 01a3d20 (06/05)
 				}
 				barcosPosicionados++;
 			}
-		}
-		
+		}		
 	}
 	while(barcosPosicionados < 3);
 }
-void realizaJogada(int tamanho) {
+// void realizaJogada(int tamanho) {
+// 	int linha, coluna;
+
+
+// }
+
+void debugTabuleiro( int tamanho ) {
 	int linha, coluna;
-
-
+	int tabuleiro[tamanho][tamanho];
+	for(int i = 0; i <= tamanho; i++) {
+		for(int j = 0; j <= tamanho; j++) {
+			printf("o caracter na linha %d e coluna %d: %c", i, j, tabuleiro[i][j]);
+			printf("\n");
+		}
+		printf("\n");	
+	}
 }
 
 void novoJogo() {
@@ -140,7 +171,14 @@ void novoJogo() {
 	scanf("%s", nomeDeUsuario);
 	printf("%d", tamanhoTabuleiro);
 	criaTabuleiro(tamanhoTabuleiro, AGUA);
+<<<<<<< HEAD
 	posicionaBarcos(tamanhoTabuleiro, quantidadeBarcos);
+=======
+	// debugTabuleiro(tamanhoTabuleiro);
+	mostraTabuleiro(tamanhoTabuleiro);
+	posicionaBarcos(tamanhoTabuleiro);
+	// debugTabuleiro(tamanhoTabuleiro);
+>>>>>>> 01a3d20 (06/05)
 	mostraTabuleiro(tamanhoTabuleiro);
 	printf("%s\n", nomeDeUsuario);
 
